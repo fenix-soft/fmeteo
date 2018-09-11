@@ -24,7 +24,7 @@ cat
 
 **note:** some names of cities are made up of the aggregation of several names or terms, for some openweatermap recognizes them simply by writing them "all attacked" for others instead you have to write them separating them with the "space". In the terminal space is used to indicate the passage of further commands or options, so it is advisable to use the "% 20" character as space and enclose the name in quotation marks.
 
-####Some examples:
+#### Some examples:
 
 for example we want to recover the weather data  of a city called "**Tempio Pausania**" that openwatermap has indexed as written with the space.
 
