@@ -4,7 +4,7 @@
 ####################################################################################
 # script meteo che usa  oopenweathermap per i dati e li riporta a terminale      
 #
-# v:1.1                                                                    
+# v:1.2                                                                    
 #
 # dipendenze: curl,jq,cat,bc
 #
@@ -36,8 +36,8 @@ api3="http://api.openweathermap.org/data/2.5/forecast?id="
 
 rm meteonow.txt
 echo " "
-echo "get data... "
-curl $api1$surc_city$api_par$key_meteo$api_lang > meteonow.txt
+echo "get data: weather now... "
+curl -s $api1$surc_city$api_par$key_meteo$api_lang > meteonow.txt
 echo " "
 city_id=`cat meteonow.txt | jq '.list[0]|.id'`
 
@@ -47,12 +47,12 @@ city_id=`cat meteonow.txt | jq '.list[0]|.id'`
 
 rm meteo5.txt
 echo " "
-echo "get data... "
+echo "get data: forecast 5 day..."
 echo " "
-curl $api2$city_id$api_par$key_meteo > meteo5.txt
+curl -s $api2$city_id$api_par$key_meteo > meteo5.txt
 
 echo " "
-echo "get data ok!... extract data file... "
+echo "extract data file... "
 echo " "
 echo " "
 echo " "
