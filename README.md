@@ -26,10 +26,11 @@ cat
 
 #### Some examples:
 
-for example we want to recover the weather data  of a city called "**Tempio Pausania**" that openwatermap has indexed as written with the space.
+for example we want to recover the weather data  of a city called "**Tempio Pausania**" (IT) or "**New York**" that openwatermap has indexed  written with the space.
 
-fmeteo "Tempio%20Pausania"
+fmeteo "Tempio%20Pausania,IT"
 
+fmeteo "New%20York,USA"
 
 ***
 
@@ -62,8 +63,9 @@ cat
 
 #### Alcuni esempi:
 
-ad esempio vogliamo recuperare il tempo di una citta chiamata "**Tempio Pausania**" che openwatermap ha indicizzato così come scritta con lo spazio.
+ad esempio vogliamo recuperare il tempo di una citta chiamata "**Tempio Pausania**"(IT), oppure  "**New York**" che openwatermap ha indicizzato scritta con lo spazio.
 
-    fmeteo "Tempio%20Pausania"
+    fmeteo "Tempio%20Pausania,IT"
 
+    fmeteo "New%20York,USA"
 
