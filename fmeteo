@@ -1,0 +1,96 @@
+#!/bin/bash
+#
+#
+####################################################################################
+# script meteo che usa  oopenweather map per i dati e li riporta a terminale       #
+#
+# v:1.0 alpha
+#
+# dipendenze: curl,jq,cat,bc
+#
+#
+####################################################################################
+
+
+# set global variable
+
+surc_city=$1
+api1="http://api.openweathermap.org/data/2.5/find?q="
+api_par="&units=metric&appid="
+api_lang="&lang=en"
+
+api2="http://api.openweathermap.org/data/2.5/forecast/daily?id="
+api3="http://api.openweathermap.org/data/2.5/forecast?id="
+key_meteo="1487dd8a93bfd85d278d9ac8dcfee94c"
+
+
+
+
+# get jason weather data now and extract city id
+
+rm meteonow.txt
+echo " "
+echo "get data... "
+curl $api1$surc_city$api_par$key_meteo$api_lang > meteonow.txt
+echo " "
+city_id=`cat meteonow.txt | jq '.list[]|.id'`
+
+
+
+# get jason weather data forecast general 5 day
+
+rm meteo5.txt
+echo " "
+echo "get data... "
+echo " "
+curl $api2$city_id$api_par$key_meteo > meteo5.txt
+
+echo " "
+echo "get data ok!... extract data file... "
+echo " "
+echo " "
+echo " "
+
+# dopo 5 secondi pulisco schermo
+sleep 5
+echo -e '\0033\0143'
+
+
+# exstract data to jason file
+
+city_name=`cat meteonow.txt | jq -r '.list[]|.name'`
+L=`cat meteonow.txt | jq -r '.list[]|.sys[]'`
+Lat=`cat meteonow.txt | jq -r '.list[]|.coord.lat'`
+Lon=`cat meteonow.txt | jq -r '.list[]|.coord.lon'`
+data_X=`cat meteonow.txt | jq -r '.list[]|.dt'`
+data_U=`date  -d @$data_X`
+Wcond_n=`cat meteonow.txt | jq -r '.list[]|.weather[].main'`
+Wcond_nd=`cat meteonow.txt | jq -r '.list[]|.weather[].description'`
+T=`cat meteonow.txt | jq -r '.list[]|.main.temp'`
+Tmax=`cat meteonow.txt | jq -r '.list[]|.main.temp_max'`
+Tmin=`cat meteonow.txt | jq -r '.list[]|.main.temp_min'`
+Hm=`cat meteonow.txt | jq -r '.list[]|.main.humidity'`
+PrS=`cat meteonow.txt | jq -r '.list[]|.main.pressure'`
+ClD=`cat meteonow.txt | jq -r '.list[]|.clouds[]'`
+R=`cat meteonow.txt | jq -r '.list[]|.rain'`
+S=`cat meteonow.txt | jq -r '.list[]|.snow'`
+Ws=`cat meteonow.txt | jq -r '.list[]|.wind.speed'`
+Wsd=`cat meteonow.txt | jq -r '.list[]|.wind.deg'`
+
+# convert m/s to Km/s 
+WsKM=$(echo "3.6"*$Ws | bc)
+
+
+# print to video all data..
+echo " "
+echo " " $city_name","$L " " "Lat: "$Lat "Lon: "$Lon " " "id:" $city_id
+echo " " $data_U
+echo " "
+echo " " "Weather: "$Wcond_n"," $Wcond_nd
+echo " "
+echo " " "Temp C°: "$T "  " "Tmax C°: "$Tmax"  " "Tmin C°: "$Tmin " " "Humidity %: "$Hm
+echo " "
+echo " " "Pressure hPa: "$PrS "  " "Clouds %: "$ClD " " "Rain mm: "$R " " "Snow mm: "$S 
+echo " "
+echo " " "Wind speed Km/h: "$WsKM
+echo " "
