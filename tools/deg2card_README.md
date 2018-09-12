@@ -1,6 +1,6 @@
 # deg2card
 
-simple script to convert degreese to cardinal direction wind
+simple script to convert degrees to cardinal direction wind
 
 ## use:
 
