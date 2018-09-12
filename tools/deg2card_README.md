@@ -16,7 +16,7 @@ deg2card 360
 
 N
 
-## Dipend:
+## Depend:
 
 bc
 
