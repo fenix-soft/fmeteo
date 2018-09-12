@@ -1,3 +1,7 @@
+# V1.3
+- now fmeteo convert wind degreese on cardinal notation (N..E.. N-NE..ecc) called "wind dir"
+- add deg2card tools script, look the readme on the tools folder for more info
+
 # V1.2
 - add curl silent mode (now the output video is more clear) 
 - fix some code
