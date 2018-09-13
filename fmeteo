@@ -4,7 +4,7 @@
 ####################################################################################
 # script meteo che usa  oopenweathermap per i dati e li riporta a terminale      
 #
-# v:1.3                                                                    
+# v:1.4                                                                    
 #
 # dipendenze: curl,jq,cat,bc
 #
@@ -90,43 +90,46 @@ WsKM=$(echo "3.6"*$Ws | bc)
 
 # convert degreese to cardinal name
 
-if (($(echo "$Wsd>= 0" | bc))); then W_nc="N"; fi
+if (($(echo "$Wsd>= 0" | bc))); then W_nc="N"; fi;
 
-if (($(echo "$Wsd>= 22.5" | bc))); then W_nc="N-NE"; fi
+if (($(echo "$Wsd>= 11.25" | bc))); then W_nc="N-NE"; fi;
 
-if (($(echo "$Wsd>= 45" | bc))); then W_nc="NE"; fi;
+if (($(echo "$Wsd>= 33.25" | bc))); then W_nc="NE"; fi;
 
-if (($(echo "$Wsd>= 67.5" | bc))); then W_nc="E-NE"; fi;
+if (($(echo "$Wsd>= 56.25" | bc))); then W_nc="E-NE"; fi;
 
-if (($(echo "$Wsd>= 90" | bc))); then W_nc="E"; fi;
+if (($(echo "$Wsd>= 78.75" | bc))); then W_nc="E"; fi;
 
-if (($(echo "$Wsd>= 112.5" | bc))); then W_nc="E-SE"; fi;
+if (($(echo "$Wsd>= 101.25" | bc))); then W_nc="E-SE"; fi;
 
-if (($(echo "$Wsd>= 135" | bc))); then W_nc="SE"; fi;
+if (($(echo "$Wsd>= 123.75" | bc))); then W_nc="SE"; fi;
 
-if (($(echo "$Wsd>= 157.5" | bc))); then W_nc="S-SE"; fi;
+if (($(echo "$Wsd>= 146.25" | bc))); then W_nc="S-SE"; fi;
 
-if (($(echo "$Wsd>= 180" | bc))); then W_nc="S"; fi;
+if (($(echo "$Wsd>= 168.75" | bc))); then W_nc="S"; fi;
 
-if (($(echo "$Wsd>= 202.5" | bc))); then W_nc="S-SW"; fi;
+if (($(echo "$Wsd>= 191.25" | bc))); then W_nc="S-SW"; fi;
 
-if (($(echo "$Wsd>= 225" | bc))); then W_nc="SW"; fi;
+if (($(echo "$Wsd>= 213.75" | bc))); then W_nc="SW"; fi;
 
-if (($(echo "$Wsd>= 247.5" | bc))); then W_nc="W-SW"; fi;
+if (($(echo "$Wsd>= 236.25" | bc))); then W_nc="W-SW"; fi;
 
-if (($(echo "$Wsd>= 270" | bc))); then W_nc="W"; fi;
+if (($(echo "$Wsd>= 258.75" | bc))); then W_nc="W"; fi;
 
-if (($(echo "$Wsd>= 292.5" | bc))); then W_nc="W-NW"; fi;
+if (($(echo "$Wsd>= 281.25" | bc))); then W_nc="W-NW"; fi;
 
-if (($(echo "$Wsd>= 315" | bc))); then W_nc="NW"; fi;
+if (($(echo "$Wsd>= 303.75" | bc))); then W_nc="NW"; fi;
 
-if (($(echo "$Wsd>= 337.5" | bc))); then W_nc="N-NW"; fi;
+if (($(echo "$Wsd>= 326.25" | bc))); then W_nc="N-NW"; fi;
 
-if (($(echo "$Wsd== 360" | bc))); then W_nc="N"; fi;
+if (($(echo "$Wsd>= 348.75" | bc))); then W_nc="N"; fi;
 
 if (($(echo "$Wsd> 360" | bc))); then W_nc="-?-"; fi;
 
 if (($(echo "$Wsd< 0" | bc))); then W_nc="-?-"; fi
+
+if [ "$Wsd" = "null" ]; then W_nc="-?-"; fi;
+
 
 
 

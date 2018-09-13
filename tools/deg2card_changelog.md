@@ -1,3 +1,6 @@
+# V1.2
+
+- fix the wind direction range bug, now the conversion rispect the data table on this picture: "wind_dir_vs_deg.png" 
 
 # V1.0 bug note
 

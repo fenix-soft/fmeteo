@@ -1,6 +1,6 @@
 #!/bin/bash
 # simple script to convert degrees to cardinal direction wind
-# V1.0
+# V1.2
 #
 
 
@@ -8,42 +8,44 @@ n=$1
 
 
 
-if (($(echo "$n>= 0" | bc))); then W_nc="N"; fi
+if (($(echo "$n>= 0" | bc))); then W_nc="N"; fi;
 
-if (($(echo "$n>= 22.5" | bc))); then W_nc="N-NE"; fi
+if (($(echo "$n>= 11.25" | bc))); then W_nc="N-NE"; fi;
 
-if (($(echo "$n>= 45" | bc))); then W_nc="NE"; fi;
+if (($(echo "$n>= 33.75" | bc))); then W_nc="NE"; fi;
 
-if (($(echo "$n>= 67.5" | bc))); then W_nc="E-NE"; fi;
+if (($(echo "$n>= 56.25" | bc))); then W_nc="E-NE"; fi;
 
-if (($(echo "$n>= 90" | bc))); then W_nc="E"; fi;
+if (($(echo "$n>= 78.75" | bc))); then W_nc="E"; fi;
 
-if (($(echo "$n>= 112.5" | bc))); then W_nc="E-SE"; fi;
+if (($(echo "$n>= 101.25" | bc))); then W_nc="E-SE"; fi;
 
-if (($(echo "$n>= 135" | bc))); then W_nc="SE"; fi;
+if (($(echo "$n>= 123.75" | bc))); then W_nc="SE"; fi;
 
-if (($(echo "$n>= 157.5" | bc))); then W_nc="S-SE"; fi;
+if (($(echo "$n>= 146.25" | bc))); then W_nc="S-SE"; fi;
 
-if (($(echo "$n>= 180" | bc))); then W_nc="S"; fi;
+if (($(echo "$n>= 168.75" | bc))); then W_nc="S"; fi;
 
-if (($(echo "$n>= 202.5" | bc))); then W_nc="S-SW"; fi;
+if (($(echo "$n>= 191.25" | bc))); then W_nc="S-SW"; fi;
 
-if (($(echo "$n>= 225" | bc))); then W_nc="SW"; fi;
+if (($(echo "$n>= 213.75" | bc))); then W_nc="SW"; fi;
 
-if (($(echo "$n>= 247.5" | bc))); then W_nc="W-SW"; fi;
+if (($(echo "$n>= 236.25" | bc))); then W_nc="W-SW"; fi;
 
-if (($(echo "$n>= 270" | bc))); then W_nc="W"; fi;
+if (($(echo "$n>= 258.75" | bc))); then W_nc="W"; fi;
 
-if (($(echo "$n>= 292.5" | bc))); then W_nc="W-NW"; fi;
+if (($(echo "$n>= 281.25" | bc))); then W_nc="W-NW"; fi;
 
-if (($(echo "$n>= 315" | bc))); then W_nc="NW"; fi;
+if (($(echo "$n>= 303.75" | bc))); then W_nc="NW"; fi;
 
-if (($(echo "$n>= 337.5" | bc))); then W_nc="N-NW"; fi;
+if (($(echo "$n>= 326.25" | bc))); then W_nc="N-NW"; fi;
 
-if (($(echo "$n== 360" | bc))); then W_nc="N"; fi;
+if (($(echo "$n>= 348.75" | bc))); then W_nc="N"; fi;
 
 if (($(echo "$n> 360" | bc))); then W_nc="-?-"; fi;
 
-if (($(echo "$n< 0" | bc))); then W_nc="-?-"; fi
+if (($(echo "$n< 0" | bc))); then W_nc="-?-"; fi;
+
+if [ "$n" = "null" ]; then W_nc="-?-"; fi;
 
 echo $W_nc
