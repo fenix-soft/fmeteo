@@ -1,0 +1,101 @@
+#!/bin/bash
+# read and print video forecast 5 data
+# V.1.0
+
+
+forecast5() {
+
+for ((i=0; i<6; i++)); do
+
+# exstract forecast 5 data to jason file
+
+city_name=`cat meteonow.txt | jq -r '.list[0]|.name'`
+L=`cat meteonow.txt | jq -r '.list[0]|.sys[]'`
+Lat=`cat meteonow.txt | jq -r '.list[0]|.coord.lat'`
+Lon=`cat meteonow.txt | jq -r '.list[0]|.coord.lon'`
+data_X=`cat meteo5.txt | jq -r '.list['$i']|.dt'`
+data_U=`date  -d @$data_X`
+Wcond_n=`cat meteo5.txt | jq -r '.list['$i']|.weather[].main'`
+Wcond_nd=`cat meteo5.txt | jq -r '.list['$i']|.weather[].description'`
+Tmax=`cat meteo5.txt | jq -r '.list['$i']|.temp.max'`
+Tmin=`cat meteo5.txt | jq -r '.list['$i']|.temp.min'`
+TM=`cat meteo5.txt | jq -r '.list['$i']|.temp.morn'`
+TE=`cat meteo5.txt | jq -r '.list['$i']|.temp.eve'`
+TN=`cat meteo5.txt | jq -r '.list['$i']|.temp.night'`
+TD=`cat meteo5.txt | jq -r '.list['$i']|.temp.day'`
+Hm=`cat meteo5.txt | jq -r '.list['$i']|.humidity'`
+PrS=`cat meteo5.txt | jq -r '.list['$i']|.pressure'`
+#ClD=`cat meteo5.txt | jq -r '.list['$i']|.clouds'`
+R=`cat meteo5.txt | jq -r '.list['$i']|.rain'`
+S=`cat meteo5.txt | jq -r '.list['$i']|.snow'`
+Ws=`cat meteo5.txt | jq -r '.list['$i']|.speed'`
+Wsd=`cat meteo5.txt | jq -r '.list['$i']|.deg'`
+
+# convert m/s to Km/s 
+WsKM=$(echo "3.6"*$Ws | bc)
+
+
+# convert degreese to cardinal name
+
+if (($(echo "$Wsd>= 0" | bc))); then W_nc="N"; fi;
+
+if (($(echo "$Wsd>= 11.25" | bc))); then W_nc="N-NE"; fi;
+
+if (($(echo "$Wsd>= 33.25" | bc))); then W_nc="NE"; fi;
+
+if (($(echo "$Wsd>= 56.25" | bc))); then W_nc="E-NE"; fi;
+
+if (($(echo "$Wsd>= 78.75" | bc))); then W_nc="E"; fi;
+
+if (($(echo "$Wsd>= 101.25" | bc))); then W_nc="E-SE"; fi;
+
+if (($(echo "$Wsd>= 123.75" | bc))); then W_nc="SE"; fi;
+
+if (($(echo "$Wsd>= 146.25" | bc))); then W_nc="S-SE"; fi;
+
+if (($(echo "$Wsd>= 168.75" | bc))); then W_nc="S"; fi;
+
+if (($(echo "$Wsd>= 191.25" | bc))); then W_nc="S-SW"; fi;
+
+if (($(echo "$Wsd>= 213.75" | bc))); then W_nc="SW"; fi;
+
+if (($(echo "$Wsd>= 236.25" | bc))); then W_nc="W-SW"; fi;
+
+if (($(echo "$Wsd>= 258.75" | bc))); then W_nc="W"; fi;
+
+if (($(echo "$Wsd>= 281.25" | bc))); then W_nc="W-NW"; fi;
+
+if (($(echo "$Wsd>= 303.75" | bc))); then W_nc="NW"; fi;
+
+if (($(echo "$Wsd>= 326.25" | bc))); then W_nc="N-NW"; fi;
+
+if (($(echo "$Wsd>= 348.75" | bc))); then W_nc="N"; fi;
+
+if (($(echo "$Wsd> 360" | bc))); then W_nc="-?-"; fi;
+
+if (($(echo "$Wsd< 0" | bc))); then W_nc="-?-"; fi
+
+if [ "$Wsd" = "null" ]; then W_nc="-?-"; fi;
+
+
+# print to video all data..
+echo " "
+echo " "
+echo " " $city_name","$L " " "Lat: "$Lat " " "Lon: "$Lon " "
+echo " " "Forecast: "$data_U
+echo " "
+echo " " "Weather: "$Wcond_n"," $Wcond_nd
+echo " "
+echo " " "T.morn. (C°): "$TM  " " "T.day (C°): "$TD  " "  "T.even. (C°): "$TE  " " "T.night (C°): "$TN
+echo " "
+echo " " "Tmax (C°): "$Tmax"  " "Tmin (C°): "$Tmin " " "Humidity (%): "$Hm
+echo " "
+echo " " "Pressure (hPa): "$PrS "  "  "Rain (mm): "$R " " "Snow (mm): "$S 
+echo " "
+echo " " "Wind speed (km/h): "$WsKM " " "Wind deg (°): "$Wsd " " "Wind dir: "$W_nc
+echo " "
+echo " "
+
+ done
+}
+forecast5
