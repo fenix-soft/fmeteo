@@ -26,15 +26,15 @@ cat
     -j              get weather information in json format
     "no option"     print weather now
 
-**note:** some names of cities are made up of the aggregation of several names or terms, for some openweatermap recognizes them simply by writing them "all attacked" for others instead you have to write them separating them with the "space". In the terminal space is used to indicate the passage of further commands or options, so it is advisable to use the "% 20" character as space and enclose the name in quotation marks.
+**note:** some names of cities are made up of the aggregation of several names or terms, for some openweatermap recognizes them simply by writing them "all attacked" for others instead you have to write them separating them with the "space". In the terminal space is used to indicate the passage of further commands or options, so it is advisable to use the **"%20"** character as **space** and enclose the name in **quotation marks**.
 
 #### Some examples:
 
 for example we want to recover the "now weather data"  of a city called "**Tempio Pausania**" (IT) or "**New York**"(USA) that openwatermap has indexed  written with the space.
 
-fmeteo "Tempio%20Pausania,IT"
+    fmeteo "Tempio%20Pausania,IT"
 
-fmeteo "New%20York,US"
+    fmeteo "New%20York,US"
 
 #### example n2:
 
@@ -84,7 +84,7 @@ cat
     
 
 
-**nota bene:** alcuni nomi di città sono costituiti dall'aggregazione di più nomi o termini, per alcuni openweatermap li riconosce semplicemente scrivendoli "tutti attacati" per altri invece bisogna scriverli separandoli con lo "spazio". Nel terminale lo spazio serve ad indicare il passaggio di ulteriori comandi o opzioni quindi è cosigliabile utilizzare il carattere "%20" come spazio e racchiudere il nome tra virgolette.
+**nota bene:** alcuni nomi di città sono costituiti dall'aggregazione di più nomi o termini, per alcuni openweatermap li riconosce semplicemente scrivendoli "tutti attacati" per altri invece bisogna scriverli separandoli con lo "spazio". Nel terminale lo spazio serve ad indicare il passaggio di ulteriori comandi o opzioni quindi è cosigliabile utilizzare il carattere **"%20"** come **spazio** e racchiudere il nome tra **virgolette**.
 
 ### Alcuni esempi:
 
