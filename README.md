@@ -38,7 +38,7 @@ for example we want to recover the "now weather data"  of a city called "**Tempi
 
 #### example n2:
 
-For example I want to know the current weather and the forecast of the next 5 days of "** New York **" (USA):
+For example I want to know the current weather and the forecast of the next 5 days of **"New York (USA)"**:
 
 
      fmeteo "New%20York,US" -a
