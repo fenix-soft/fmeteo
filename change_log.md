@@ -1,3 +1,7 @@
+# V1.5
+- now fmmeteo suport 5 day forecast
+- add more oprtion: (forecast, all, json)
+
 # V1.4
 - fix conversion on wind cardinal direction, fix (deg2card V1.2)
 
