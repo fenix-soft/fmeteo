@@ -1,35 +1,39 @@
 #!/bin/bash
 # read and print video forecast 5 data
-# V.1.0
+# V.1.1
 
 
 forecast5() {
+echo " "
+echo "┌---------------------------------------------------------------┐"
+echo "┊               OFFLINE  FORECAST WEATHER 5 DAY  DATA           ┊"
+echo "└---------------------------------------------------------------┘"
 
 for ((i=0; i<6; i++)); do
 
 # exstract forecast 5 data to jason file
 
-city_name=`cat meteonow.txt | jq -r '.list[0]|.name'`
-L=`cat meteonow.txt | jq -r '.list[0]|.sys[]'`
-Lat=`cat meteonow.txt | jq -r '.list[0]|.coord.lat'`
-Lon=`cat meteonow.txt | jq -r '.list[0]|.coord.lon'`
-data_X=`cat meteo5.txt | jq -r '.list['$i']|.dt'`
+city_name=`cat meteonow.json | jq -r '.list[0]|.name'`
+L=`cat meteonow.json | jq -r '.list[0]|.sys[]'`
+Lat=`cat meteonow.json | jq -r '.list[0]|.coord.lat'`
+Lon=`cat meteonow.json | jq -r '.list[0]|.coord.lon'`
+data_X=`cat meteo5.json | jq -r '.list['$i']|.dt'`
 data_U=`date  -d @$data_X`
-Wcond_n=`cat meteo5.txt | jq -r '.list['$i']|.weather[].main'`
-Wcond_nd=`cat meteo5.txt | jq -r '.list['$i']|.weather[].description'`
-Tmax=`cat meteo5.txt | jq -r '.list['$i']|.temp.max'`
-Tmin=`cat meteo5.txt | jq -r '.list['$i']|.temp.min'`
-TM=`cat meteo5.txt | jq -r '.list['$i']|.temp.morn'`
-TE=`cat meteo5.txt | jq -r '.list['$i']|.temp.eve'`
-TN=`cat meteo5.txt | jq -r '.list['$i']|.temp.night'`
-TD=`cat meteo5.txt | jq -r '.list['$i']|.temp.day'`
-Hm=`cat meteo5.txt | jq -r '.list['$i']|.humidity'`
-PrS=`cat meteo5.txt | jq -r '.list['$i']|.pressure'`
-#ClD=`cat meteo5.txt | jq -r '.list['$i']|.clouds'`
-R=`cat meteo5.txt | jq -r '.list['$i']|.rain'`
-S=`cat meteo5.txt | jq -r '.list['$i']|.snow'`
-Ws=`cat meteo5.txt | jq -r '.list['$i']|.speed'`
-Wsd=`cat meteo5.txt | jq -r '.list['$i']|.deg'`
+Wcond_n=`cat meteo5.json | jq -r '.list['$i']|.weather[].main'`
+Wcond_nd=`cat meteo5.json | jq -r '.list['$i']|.weather[].description'`
+Tmax=`cat meteo5.json | jq -r '.list['$i']|.temp.max'`
+Tmin=`cat meteo5.json | jq -r '.list['$i']|.temp.min'`
+TM=`cat meteo5.json | jq -r '.list['$i']|.temp.morn'`
+TE=`cat meteo5.json | jq -r '.list['$i']|.temp.eve'`
+TN=`cat meteo5.json | jq -r '.list['$i']|.temp.night'`
+TD=`cat meteo5.json | jq -r '.list['$i']|.temp.day'`
+Hm=`cat meteo5.json | jq -r '.list['$i']|.humidity'`
+PrS=`cat meteo5.json | jq -r '.list['$i']|.pressure'`
+#ClD=`cat meteo5.json | jq -r '.list['$i']|.clouds'`
+R=`cat meteo5.json | jq -r '.list['$i']|.rain'`
+S=`cat meteo5.json | jq -r '.list['$i']|.snow'`
+Ws=`cat meteo5.json | jq -r '.list['$i']|.speed'`
+Wsd=`cat meteo5.json | jq -r '.list['$i']|.deg'`
 
 # convert m/s to Km/s 
 WsKM=$(echo "3.6"*$Ws | bc)
